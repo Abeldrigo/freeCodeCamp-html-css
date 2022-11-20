@@ -1,0 +1,227 @@
+/* Certain types of motion-based animations can cause discomfort for some users. 
+In particular, people with vestibular disorders have sensitivity to certain motion triggers.
+
+The @media at-rule has a media feature called prefers-reduced-motion to set CSS based on the user's preferences. 
+It can take one of the following values:
+
+    - reduce
+    - no-preference
+ */
+@media (prefers-reduced-motion: no-preference) {
+  /* Clicking on the navigation links should jump the viewport to the relevant section. 
+  However, this jumping can be disorienting for some users.
+
+Selects all elements. */
+  * {
+    scroll-behavior: smooth; /* Sets the scroll-behavior to smooth. */
+  }
+}
+
+body {
+  background: #f5f6f7;
+  color: #1b1b32;
+  font-family: Helvetica;
+  margin: 0;
+}
+
+/* 
+Tidy up the header, by using Flexbox to put space between the children, and vertically center them.
+Then, fix the header to the top of the viewport. */
+header {
+  width: 100%;/* Make the header take up the full width of its parent container */
+  height: 50px;
+  background-color: #1b1b32;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+}
+
+#logo {
+  width: max(100px, 18vw); /* A useful property of an SVG (scalable vector graphics) is that it contains a path attribute which allows the image to be scaled without affecting the resolution of the resultant image. */
+  background-color: #0a0a23;
+  aspect-ratio: 35 / 4;
+  padding: 0.4rem;
+}
+
+h1 {
+  color: #f1be32;
+  font-size: min(5vw, 1.2em);
+  text-align: center;
+}
+
+nav {
+  width: 50%;
+  max-width: 300px;
+  height: 50px;
+}
+
+/* Targets unordered list elements within nav elements 
+On small screens, the unordered list in the navigation bar overflows the right side of the screen.*/
+nav > ul {
+  display: flex;
+  justify-content: space-evenly;/* Uses Flexbox to evenly space the children. */
+  flex-wrap: wrap;
+  align-items: center;
+  padding-inline-start: 0;
+  margin-block: 0;
+  height: 100%;
+}
+
+/* Selects the list elements within the navigation bar. */
+nav > ul > li {
+  color: #dfdfe2;
+  margin: 0 0.2rem;
+  padding: 0.2rem;
+  display: block;
+}
+
+/* Creates a selector targeting the navigation list elements so that when the cursor hovers over them, the background color and text color are switched, and the cursor becomes a pointer. */
+nav > ul > li:hover {
+  background-color: #dfdfe2;
+  color: #1b1b32;
+  cursor: pointer;
+}
+
+/* 
+
+On the topic of visual accessibility, contrast between elements is a key 
+factor. For example, the contrast between the text and the background 
+of a heading should be at least 4.5:1.
+
+Changes the font color of all the anchor elements within the list elements to something with a contrast ratio of at least 7:1.
+*/
+li > a {
+  color: inherit;
+  text-decoration: none;/* Removes the underline from the anchor tags to make the navigation buttons look more like typical buttons. */
+}
+
+main {
+  padding-top: 50px;
+}
+
+section {
+  width: 80%; /* Sets the width of the section elements to 80% of their parent container */
+  margin: 0 auto 10px auto; /* Centers the section elements, adding 10px to the bottom margin. */
+  max-width: 600px; /* Ensures the section elements cannot be larger than 600px in width. */
+}
+
+/* Typeface plays an important role in the accessibility of a page. Some fonts are easier to read than others, and this is especially true on low-resolution screens. */
+h1,
+h2 {
+  font-family: Verdana, Tahoma; /* Sets teh font to Verdana, and use another web-safe font in the sans-serif family as a fallback. */
+}
+
+h2 {
+  border-bottom: 4px solid #dfdfe2;
+  margin-top: 0px;
+  padding-top: 60px; /* Replaces the top margin of the h2 elements with 60px of top padding. */
+}
+
+/* Adds padding to the top (10px) and left (5px) of the .info elements, and set the other values to 0. */
+.info {
+  padding: 10px 0 0 5px;
+}
+
+/* Gives the .formrow elements top margin, and left and right padding. The other padding values should be 0.*/
+.formrow {
+  margin-top: 30px;
+  padding: 0px 15px;
+}
+
+/* Increases the font size for all input elements to 16px. */
+input {
+  font-size: 16px;
+}
+
+/* Targets all input and label elements within .info elements. */
+.info label, .info input {
+  display: inline-block; /* Aligns the input boxes with each other. */
+}
+
+/* To make the first section look more inline, 
+target only the input elements within .info elements, 
+and set their width to 50%, and left-align their text. */
+.info input {
+  width: 50%;
+  text-align: left;
+}
+
+/* Targets all label elements within .info elements. */
+.info label {
+  width: 10%; /* sets their width to 10% */
+  min-width: 55px; /* makes it so they do not take up less than 55px. */
+  text-align: right; /* Aligns the label element's text to the right. */
+}
+
+/* To neaten the .question-block elements. (Para ordenar los elementos del bloque de preguntas,) */
+.question-block {
+  text-align: left;
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+  padding-top: 5px;
+}
+
+/* Makes the paragraph elements appear as a higher priority */
+p {
+  margin-top: 5px;
+  padding-left: 15px;
+  font-size: 20px;
+}
+
+/* To prevent unnecessary repetition, target the before pseudo-element of the p element, and give it a content property of "Question #". */
+p::before {
+  content: "Question #";
+}
+
+.question {
+  border: none; /* Removes the border and bottom padding on the .question elements. */
+  padding-bottom: 0;
+}
+
+.answers-list {
+  list-style: none; /* Removes the default styling for the list items of .answers-list */
+  padding: 0; /* Removes the unordered list padding. */
+}
+ /* Gives the submit button a freeCodeCamp-style design */
+button {
+  display: block;
+  margin: 40px auto;
+  width: 40%;
+  padding: 15px;
+  font-size: 23px;
+  background: #d0d0d5;
+  border: 3px solid #3b3b4f;
+}
+
+footer {
+  background-color: #2a2a40;
+  display: flex;
+  justify-content: center; /* Uses Flexbox to horizontally center the text. */
+}
+
+/* Targets the footer and the anchor element within. */
+footer,
+footer a {
+  color: #dfdfe2;
+}
+
+address {
+  text-align: center; /* Horizontally centers all the text within the address element. */
+  padding: 0.3em; /* Adds some padding. */
+}
+
+/* Pattern to visually hide text for only screen readers to read. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
